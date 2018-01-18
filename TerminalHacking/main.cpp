@@ -1,20 +1,21 @@
 // main.cpp: Defines the entry point for the console application.
 //
 #include "stdafx.h"
+#include <algorithm>
 #include "WordList.h"
 
 const int wordLength = 5;
 const int numberOfWords = 15;
 
-int GetMatchFactor(const std::string& guess, const std::string& secretWord, int maxLength);
-void UppercaseString(std::string& word);
+int GetWordMatchFactor(const std::string& guess, const std::string& secretWord, int maxLength);
+void ConvertToUppercase(std::string& word);
 
 int main()
 {
 	// Seed the random number generator with the current time,
 	// to ensure different results each time the program is run
 	srand(static_cast<unsigned int>(time(nullptr)));
-
+	
 	// Initialise word list
 	WordList words(wordLength);
 
@@ -47,33 +48,34 @@ int main()
 	std::cout << "You have only four chances...so choose wisely.\n";
 	std::cout << "Tell us your first guess.\n";
 
-	int lives = 4;
-	while (lives >= 0) {
+	int numLives = 4;
+	while (numLives >= 0) {
 		// Get the user's guess
 		std::string userGuess;
 
 		std::cin >> userGuess;
 
 		// Convert the guess to uppercase characters
-		UppercaseString(userGuess);
+		ConvertToUppercase(userGuess);
 
 		// Determine how much the word matches
-		int matchFactor = GetMatchFactor(userGuess, secret, 5);
+		int matchFactor = GetWordMatchFactor(userGuess, secret, wordLength);
 
 		if (options.find(userGuess) == options.end()) {
 			std::cout << "You fool... that word is not an option!\n";
-		} else if (matchFactor == 5) {
+		} else if (matchFactor == wordLength) {
 			std::cout << "Congratulations, you win!!!\n";
 			std::cout << "Your death has been postponed to the time of your actual death.\n";
 
+			// Allow the user to see their death postponement message before the window closes
 			system("pause");
 			return 0;
 		} else {
 			std::cout << "Not quite...that word only has " << matchFactor << " matching characters...\n";
-			--lives;
+			--numLives;
 
-			if (lives > 0)
-				std::cout << "You now have lost a life and have only " << lives << " remaining. Please choose more wisely or die.\n";
+			if (numLives >= 0)
+				std::cout << "You now have lost a life and have only " << numLives << " remaining. Please choose more wisely or die.\n";
 		}
 	}
 
@@ -90,19 +92,13 @@ int main()
 	return 0;
 }
 
-// GetMatchFactor: Takes two strings, testing where their characters match (up to maxLength), and returning the number of matching characters
-int GetMatchFactor(const std::string& guess, const std::string& secretWord, int maxLength) {
+// GetWordMatchFactor: Takes two strings, testing where their characters match (up to maxLength), and returning the number of matching characters
+int GetWordMatchFactor(const std::string& guess, const std::string& secretWord, int maxLength) {
 	int matchCount = 0;
-	int maxCount = maxLength;
-
-	// Clamp maxCount to the maximum number of characters that the strings both have
-	if (maxCount > guess.length())
-		maxCount = guess.length();
-	if (maxCount > secretWord.length())
-		maxCount = secretWord.length();
+	int largestExistingLength = std::min(guess.length(), secretWord.length(), maxLength);
 
 	// Check which characters match and add to the counter if they do
-	for (int i = 0; i < maxLength; ++i) {
+	for (int i = 0; i < largestExistingLength; ++i) {
 		if (guess[i] == secretWord[i])
 			++matchCount;
 	}
@@ -111,9 +107,9 @@ int GetMatchFactor(const std::string& guess, const std::string& secretWord, int 
 	return matchCount;
 }
 
-// UppercaseString: Converts a string's lowercase characters to uppercase
-void UppercaseString(std::string& word) {
-	for (auto& character : word) {
+// ConvertToUppercase: Converts a string's lowercase characters to uppercase
+void ConvertToUppercase(std::string& word) {
+	for (char& character : word) {
 		if (character >= 'a' && character <= 'z')
 			character += 'A' - 'a';
 	}
