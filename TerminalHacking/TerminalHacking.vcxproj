@@ -23,7 +23,8 @@
     <ProjectGuid>{579D3145-0703-47C3-BC8F-6E336E6A5A42}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TerminalHacking</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>
+    </WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -95,7 +95,7 @@ int main()
 // GetWordMatchFactor: Takes two strings, testing where their characters match (up to maxLength), and returning the number of matching characters
 int GetWordMatchFactor(const std::string& guess, const std::string& secretWord, int maxLength) {
 	int matchCount = 0;
-	int largestExistingLength = std::min(guess.length(), secretWord.length(), maxLength);
+	int largestExistingLength = std::min(std::min(guess.length(), secretWord.length()), static_cast<size_t>(maxLength));
 
 	// Check which characters match and add to the counter if they do
 	for (int i = 0; i < largestExistingLength; ++i) {
