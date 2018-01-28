@@ -97,9 +97,19 @@ int main()
 	// Give the user a chance to say their last words
 	std::cout << "Any last words?\n";
 
+	// Let the user say some final words
 	std::string lastWords;
 	std::cin >> lastWords;
+	ConvertToUppercase(lastWords);
 
+	if (lastWords == secret) {
+		// Lawl
+		std::cout << "Ironically enough, the player's last word was the correct word. What a short, sad life they hadth livedeth.\n";
+		std::cout << "Alas, as they knew deep down inside, they're still going to die anyway.\n";
+		system("pause");
+	}
+
+	// Say bye and close
 	std::cout << "Bye bye\n";
 
 	return 0;
