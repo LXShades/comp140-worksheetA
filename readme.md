@@ -4,7 +4,7 @@ At first, I wanted to find an algorithm that guaranteed it was logically possibl
 This was too challenging for me, so in the end I settled for an algorithm that picks the most similar words possible to the secret word. This meant sorting them in descending order of similarity. The surprising side-effect was that the game became easier to win anyway, as it now visualises a noticeable trail of words based on the commonness of letters, and is thus very often easy to win if you know what it's doing. It's still not guaranteed, though.
 
 # Improved algorithm psuedocode (rough version)
-```python
+```
 array options = array(secret_word)     # word options, beginning with the secret word
 array word_list = get_dictionary()     # list of words candidates to add to the options
 
