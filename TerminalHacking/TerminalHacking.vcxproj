@@ -144,6 +144,7 @@
     <ClCompile Include="WordList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="main.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="WordList.h" />
   </ItemGroup>
