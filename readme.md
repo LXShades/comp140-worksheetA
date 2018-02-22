@@ -1,3 +1,6 @@
+# Github Link
+https://github.com/LXShades/comp140-worksheetA
+
 # Improved algorithm rationale
 At first, I wanted to find an algorithm that guaranteed it was logically possible to find the exact word within the three lives you have.  
 

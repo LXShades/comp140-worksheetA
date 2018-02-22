@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="StringFunctions.cpp" />
     <ClCompile Include="WordList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StringFunctions.h" />
     <ClInclude Include="WordList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

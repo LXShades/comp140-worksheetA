@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "WordList.h"
-#include "main.h"
+#include "StringFunctions.h"
 
 const std::string wordFileName("words.txt");
 
@@ -73,7 +73,7 @@ std::set<std::string> WordList::generateOptionList(const std::string& secretWord
 				index = 0;
 
 			// Check if the similarity exceeds our current most similar word
-			int similarity = GetWordMatchFactor(words[index], secretWord, wordLength);
+			int similarity = StringFunctions::GetWordMatchFactor(words[index], secretWord, wordLength);
 
 			if (similarity > maxSimilarity) {
 				if (similarity == wordLength)
